@@ -18,6 +18,17 @@ class BooksApp extends React.Component {
     showSearchPage: false
   }
 
+  handleChange(e, book) {
+    debugger;
+    book.shelf = e.target.value
+    var shelfName = e.target.value
+    this.setState({
+      // shelfName: [...this.state.shelfName, newelement]
+    })
+    // this.setState()
+    // assuming you initialized the default state to hold selected values
+  }
+
   componentDidMount(){
     BooksAPI.getAll().then((books) => {
       console.log(books)
@@ -31,6 +42,7 @@ class BooksApp extends React.Component {
   }
 
   render() {
+    const { handleChange } = this;
     return (
       <div className="app">
         {this.state.showSearchPage ? (
@@ -47,7 +59,6 @@ class BooksApp extends React.Component {
                   you don't find a specific author or title. Every search is limited by search terms.
                 */}
                 <input type="text" placeholder="Search by title or author"/>
-
               </div>
             </div>
             <div className="search-books-results">
@@ -61,7 +72,7 @@ class BooksApp extends React.Component {
             </div>
             <div className="list-books-content">
               <div>
-                <Bookshelf books={this.state.currentlyReading} />
+                <Bookshelf books={this.state.currentlyReading} handleChange={this.handleChange.bind(this)}/>
                 <Bookshelf books={this.state.wantToRead} />
                 <Bookshelf books={this.state.read} />
               </div>

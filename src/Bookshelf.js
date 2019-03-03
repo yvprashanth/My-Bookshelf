@@ -12,7 +12,7 @@ class Bookshelf extends React.Component {
                         {this.props.books.map((book) => {
                             return (
                                 <li>
-                                    <Book bookDetails={book} />
+                                    <Book bookDetails={book} handleChange={this.props.handleChange} />
                                 </li>
                             )
                         })}
