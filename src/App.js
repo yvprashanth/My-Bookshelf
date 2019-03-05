@@ -3,8 +3,14 @@ import * as BooksAPI from './BooksAPI'
 import './App.css'
 import Bookshelf from './Bookshelf'
 import Book from './Book'
+import _ from 'lodash';
 
 class BooksApp extends React.Component {
+  constructor(props){
+    super(props);
+    this.updateShelf = this.updateShelf.bind(this);
+  }
+
   state = {
     /**
      * TODO: Instead of using this state variable to keep track of which page
@@ -18,10 +24,16 @@ class BooksApp extends React.Component {
     showSearchPage: false
   }
 
-  handleChange(e, book) {
+  updateShelf(e, book) {
     debugger;
-    book.shelf = e.target.value
-    var shelfName = e.target.value
+    book.shelf = e.target.value;
+    var newBooks = this.state.books;
+      var index = _.findIndex(newBooks, function(num) {
+        return num.id === book.id
+      });
+      if (index > -1) {
+        newBooks.splice(index,1);
+      }
     this.setState({
       // shelfName: [...this.state.shelfName, newelement]
     })
@@ -31,7 +43,6 @@ class BooksApp extends React.Component {
 
   componentDidMount(){
     BooksAPI.getAll().then((books) => {
-      console.log(books)
       this.setState(
         {
           currentlyReading: books.filter(book => book.shelf === "currentlyReading"),
@@ -72,7 +83,7 @@ class BooksApp extends React.Component {
             </div>
             <div className="list-books-content">
               <div>
-                <Bookshelf books={this.state.currentlyReading} handleChange={this.handleChange.bind(this)}/>
+                <Bookshelf books={this.state.currentlyReading} updateShelf={this.updateShelf}/>
                 <Bookshelf books={this.state.wantToRead} />
                 <Bookshelf books={this.state.read} />
               </div>
