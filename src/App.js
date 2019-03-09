@@ -18,22 +18,19 @@ class BooksApp extends React.Component {
      * users can use the browser's back and forward buttons to navigate between
      * pages, as well as provide a good URL they can bookmark and share.
      */
-    currentlyReading:[], 
-    wantToRead: [],
-    read:[],
+    books:[],
     showSearchPage: false
   }
 
   updateShelf(e, book) {
-    debugger;
     book.shelf = e.target.value;
     var newBooks = this.state.books;
-      var index = _.findIndex(newBooks, function(num) {
-        return num.id === book.id
-      });
-      if (index > -1) {
-        newBooks.splice(index,1);
-      }
+    var index = _.findIndex(newBooks, function(num) {
+      return num.id === book.id
+    });
+    if (index > -1) {
+      newBooks.splice(index,1);
+    }
     this.setState({
       // shelfName: [...this.state.shelfName, newelement]
     })
@@ -43,17 +40,11 @@ class BooksApp extends React.Component {
 
   componentDidMount(){
     BooksAPI.getAll().then((books) => {
-      this.setState(
-        {
-          currentlyReading: books.filter(book => book.shelf === "currentlyReading"),
-          wantToRead: books.filter(book => book.shelf === "wantToRead"),
-          read: books.filter(book => book.shelf === "read"),
-        })
+      this.setState({books});
     })
   }
 
   render() {
-    const { handleChange } = this;
     return (
       <div className="app">
         {this.state.showSearchPage ? (
@@ -61,14 +52,7 @@ class BooksApp extends React.Component {
             <div className="search-books-bar">
               <button className="close-search" onClick={() => this.setState({ showSearchPage: false })}>Close</button>
               <div className="search-books-input-wrapper">
-                {/*
-                  NOTES: The search from BooksAPI is limited to a particular set of search terms.
-                  You can find these search terms here:
-                  https://github.com/udacity/reactnd-project-myreads-starter/blob/master/SEARCH_TERMS.md
-
-                  However, remember that the BooksAPI.search method DOES search by title or author. So, don't worry if
-                  you don't find a specific author or title. Every search is limited by search terms.
-                */}
+                {}
                 <input type="text" placeholder="Search by title or author"/>
               </div>
             </div>
@@ -83,9 +67,7 @@ class BooksApp extends React.Component {
             </div>
             <div className="list-books-content">
               <div>
-                <Bookshelf books={this.state.currentlyReading} updateShelf={this.updateShelf}/>
-                <Bookshelf books={this.state.wantToRead} />
-                <Bookshelf books={this.state.read} />
+                <Bookshelf selfbooks={this.state.books} updateShelf={this.updateShelf}/>
               </div>
             </div>
             <div className="open-search">
