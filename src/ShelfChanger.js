@@ -3,10 +3,10 @@ import './App.css'
 
 class ShelfChanger extends React.Component {
     render(){
-        const { book, updateShelf } = this.props
+        const { book, updateShelf, shelf } = this.props
         return (
             <div className="book-shelf-changer">
-                <select onChange={(e) => updateShelf(e, book)}>
+                <select value={shelf} onChange={(e) => updateShelf(e, book)}>
                     <option value="move" disabled>Move to...</option>
                     <option value="currentlyReading">Currently Reading</option>
                     <option value="wantToRead">Want to Read</option>

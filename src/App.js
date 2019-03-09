@@ -32,10 +32,8 @@ class BooksApp extends React.Component {
       newBooks.splice(index,1);
     }
     this.setState({
-      // shelfName: [...this.state.shelfName, newelement]
+      books: [...this.state.books, book]
     })
-    // this.setState()
-    // assuming you initialized the default state to hold selected values
   }
 
   componentDidMount(){
