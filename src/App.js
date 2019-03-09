@@ -63,11 +63,11 @@ class BooksApp extends React.Component {
         ) : (
           <div className="list-books">
             <div className="list-books-title">
-              <h1>MyReads</h1>
+              <h1>My Book Reads</h1>
             </div>
             <div className="list-books-content">
               <div>
-                <Bookshelf selfbooks={this.state.books} updateShelf={this.updateShelf}/>
+                  <Bookshelf selfbooks={this.state.books} updateShelf={this.updateShelf}/> 
               </div>
             </div>
             <div className="open-search">
