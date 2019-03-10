@@ -26,12 +26,11 @@ class BooksApp extends React.Component {
 
   updateShelf(e, book) {
     book.shelf = e.target.value;
-    var newBooks = this.state.books;
-    var index = _.findIndex(newBooks, function(num) {
+    var index = _.findIndex(this.state.books, function(num) {
       return num.id === book.id
     });
     if (index > -1) {
-      newBooks.splice(index,1);
+      this.state.books.splice(index,1);
     }
     this.setState({
       books: [...this.state.books, book]
