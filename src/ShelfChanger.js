@@ -3,7 +3,7 @@ import './App.css'
 
 class ShelfChanger extends React.Component {
     render(){
-        const { book, updateShelf, shelf } = this.props
+        const { book, updateShelf, shelf } = this.props 
         return (
             <div className="book-shelf-changer">
                 <select value={shelf} onChange={(e) => updateShelf(e, book)}>
