@@ -5,9 +5,14 @@ import SearchResults from './SearchResults'
 class Search extends React.Component {
     constructor(){
       super();
+      this.handleChange = this.handleChange.bind(this);
       this.state = {
         searchText : ''
       }
+    }
+
+    handleChange(event) {
+      this.setState({searchText:event.target.value})
     }
 
     render(){
@@ -20,10 +25,10 @@ class Search extends React.Component {
               <div className="search-books-input-wrapper">
                 {}
                 <input type="text" placeholder="Search by title or author" autofocus="autofocus" 
-                  value={this.state.searchText}/>
+                  value={this.state.searchText} onChange={this.handleChange}/>
               </div>
             </div>
-            <SearchResults />
+            <SearchResults searchText={this.state.searchText}/>
           </div>
         )
     }
