@@ -49,7 +49,7 @@ class BooksApp extends React.Component {
           <Route path="/" exact render={()=> (
               <div className="list-books">
                 <div className="list-books-title">
-                  <h1>My Book Reads</h1>
+                  <h1>Prashanth Bookreads</h1>
                 </div>
                 <div className="list-books-content">
                   <div>
