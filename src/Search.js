@@ -24,9 +24,9 @@ class Search extends React.Component {
     }
 
     handleChange(event) {
-      var value = event.target.value.trim()
+      var value = event.target.value
       this.setState({searchText: value})
-      this.debouncedHandleChange(value); // sending only the values not the entire event
+      this.debouncedHandleChange(value.trim()); // sending only the values not the entire event
     }
 
     render() {
