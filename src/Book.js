@@ -12,7 +12,7 @@ class Book extends React.Component {
                     </div>
                 </div>
                 <div className="book-title">{this.props.bookDetails.title}</div>
-                <div className="book-authors">{this.props.bookDetails.authors[0]}</div>
+                <div className="book-authors">{this.props.bookDetails.authors}</div>
             </div>
         )
     }
