@@ -20,7 +20,7 @@ class SearchResults extends React.Component {
                         <Book bookDetails={book} updateShelf={this.props.updateShelf} />
                     </li>
                     )
-                }) : "No Search Results"}
+                }) : "No Search Results? Try Astronomy, Android, Film, Fantasy, Cricket, Philosophy"}
             </ol>
         </div>)
     }

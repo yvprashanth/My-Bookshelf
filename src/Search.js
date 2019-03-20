@@ -19,14 +19,14 @@ class Search extends React.Component {
       console.log(value)
       BooksAPI.search(value).then((books) => {
         console.log(books)
-        debugger;
         this.setState({searchResults:books})
       });
     }
 
     handleChange(event) {
-      this.setState({searchText: event.target.value})
-      this.debouncedHandleChange(event.target.value); // sending only the values not the entire event
+      var value = event.target.value.trim()
+      this.setState({searchText: value})
+      this.debouncedHandleChange(value); // sending only the values not the entire event
     }
 
     render() {
