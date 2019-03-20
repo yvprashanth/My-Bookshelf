@@ -6,6 +6,8 @@ import _ from 'lodash';
 import Search from './Search'
 import { Link } from 'react-router-dom'
 import { Route } from 'react-router-dom'
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 class BooksApp extends React.Component {
   constructor(props){
@@ -35,6 +37,9 @@ class BooksApp extends React.Component {
     this.setState({
       books: [...this.state.books, book]
     })
+    toast.info("Book shelf changed !", {
+      position: toast.POSITION.TOP_RIGHT
+    });
   }
 
   componentDidMount(){
@@ -64,6 +69,7 @@ class BooksApp extends React.Component {
               </div>
           )}/>
           <Route path="/search" render={(props) => <Search {...props} updateShelf={this.updateShelf} />} />
+          <ToastContainer />
       </div>
     )
   }
