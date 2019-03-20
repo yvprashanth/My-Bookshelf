@@ -63,7 +63,7 @@ class BooksApp extends React.Component {
                 </div>
               </div>
           )}/>
-          <Route path="/search" component={Search} />
+          <Route path="/search" render={(props) => <Search {...props} updateShelf={this.updateShelf} />} />
       </div>
     )
   }

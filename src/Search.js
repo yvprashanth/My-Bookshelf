@@ -8,15 +8,11 @@ class Search extends React.Component {
     constructor(){
       super();
       this.handleChange = this.handleChange.bind(this);
-      this.debouncedHandleChange = debounce(this.debouncedHandleChange.bind(this), 1000);
+      this.debouncedHandleChange = debounce(this.debouncedHandleChange.bind(this), 500);
       this.state = {
         searchText : '',
         searchResults: []
       }
-    }
-
-    componentWillMount(){
-      // this.handleChange = debounce(this.handleChange, 500);
     }
 
     debouncedHandleChange(value){
@@ -46,7 +42,7 @@ class Search extends React.Component {
                   value={this.state.searchText} onChange={this.handleChange}/>
               </div>
             </div>
-            <SearchResults searchText={this.state.searchText} searchResults={this.state.searchResults}/>
+            <SearchResults searchText={this.state.searchText} searchResults={this.state.searchResults} updateShelf={this.props.updateShelf}/>
           </div>
         )
     }
